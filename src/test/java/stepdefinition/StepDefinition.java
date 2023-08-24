@@ -52,4 +52,31 @@ public class StepDefinition extends TestBase {
         mainPage.clickCloseModalButton();
     }
 
+    @Given("user clicks the header LOGIN button")
+    public void userClicksTheHeaderLOGINButton() {
+        mainPage.clickLoginHeaderButton();
+    }
+
+    @And("user writes login data: {string}, {string}")
+    public void userWritesLoginData(String username, String password) {
+        mainPage.writeLoginUsernameInput(username);
+        mainPage.writeLoginPasswordInput(password);
+    }
+
+    @When("user clicks the modal LOG IN button")
+    public void userClicksTheModalLOGINButton() {
+        mainPage.clickLoginModalButton();
+    }
+
+    @Then("appears a button with the message {string}")
+    public void appearsAButtonWithTheMessage(String expectedUsernameWelcome) {
+        String actualUsernameWelcome = mainPage.getWelcomeUsernameButtonText();
+        assertEquals(actualUsernameWelcome, expectedUsernameWelcome,"Username welcome doesn't match");
+    }
+
+    @And("user clicks the header LOG OUT button")
+    public void userClicksTheHeaderLOGOUTButton() {
+        mainPage.clickLogoutHeaderButton();
+    }
+
 }
