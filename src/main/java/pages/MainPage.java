@@ -31,6 +31,9 @@ public class MainPage extends AbstractComponents {
     WebElement signUpModalButton;
     By bySignUpModalButton = By.cssSelector("button[onclick='register()']");
 
+    @FindBy(css = "#signInModal button.btn.btn-secondary")
+    WebElement closeModalButton;
+
     public void goTo() {
         driver.get("https://www.demoblaze.com/index.html");
     }
@@ -42,10 +45,12 @@ public class MainPage extends AbstractComponents {
 
     public void writeSignUpUsernameInput(String usernameText) {
         waitVisibilityOfElementLocated(bySignUpModalButton);
+        signUpUsernameInput.clear();
         signUpUsernameInput.sendKeys(usernameText);
     }
 
     public void writeSignUpPasswordInput(String passwordText) {
+        signUpPasswordInput.clear();
         signUpPasswordInput.sendKeys(passwordText);
     }
 
@@ -55,6 +60,15 @@ public class MainPage extends AbstractComponents {
 
     public String getAlertText() {
         return waitAndSwitchToAlert().getText();
+    }
+
+    public void clickAlertOKButton() {
+        waitAndSwitchToAlert().accept();
+        switchToDefaultContent();
+    }
+
+    public void clickCloseModalButton() {
+        closeModalButton.click();
     }
 
 }
