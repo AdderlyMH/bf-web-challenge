@@ -27,4 +27,8 @@ public class AbstractComponents {
         return driver.switchTo().alert();
     }
 
+    public void switchToDefaultContent() {
+        driver.switchTo().defaultContent();
+    }
+
 }
