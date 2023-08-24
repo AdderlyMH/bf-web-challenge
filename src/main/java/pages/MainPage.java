@@ -34,6 +34,28 @@ public class MainPage extends AbstractComponents {
     @FindBy(css = "#signInModal button.btn.btn-secondary")
     WebElement closeModalButton;
 
+    @FindBy(id = "login2")
+    WebElement loginHeaderButton;
+    By byLoginHeaderButton = By.id("login2");
+
+    @FindBy(id = "loginusername")
+    WebElement loginUsernameInput;
+
+    @FindBy(id = "loginpassword")
+    WebElement loginPasswordInput;
+
+    @FindBy(css = "button[onclick='logIn()']")
+    WebElement loginModalButton;
+    By byLoginModalButton = By.cssSelector("button[onclick='logIn()']");
+
+    @FindBy(id = "nameofuser")
+    WebElement welcomeUsernameButton;
+    By byWelcomeUsernameButton = By.id("nameofuser");
+
+    @FindBy(id = "logout2")
+    WebElement logoutHeaderButton;
+    By byLogoutHeaderButton = By.id("logout2");
+
     public void goTo() {
         driver.get("https://www.demoblaze.com/index.html");
     }
@@ -69,6 +91,36 @@ public class MainPage extends AbstractComponents {
 
     public void clickCloseModalButton() {
         closeModalButton.click();
+    }
+
+    public void clickLoginHeaderButton() {
+        waitVisibilityOfElementLocated(byLoginHeaderButton);
+        loginHeaderButton.click();
+    }
+
+    public void writeLoginUsernameInput(String usernameText) {
+        waitVisibilityOfElementLocated(byLoginModalButton);
+        loginUsernameInput.clear();
+        loginUsernameInput.sendKeys(usernameText);
+    }
+
+    public void writeLoginPasswordInput(String passwordText) {
+        loginPasswordInput.clear();
+        loginPasswordInput.sendKeys(passwordText);
+    }
+
+    public void clickLoginModalButton() {
+        loginModalButton.click();
+    }
+
+    public String getWelcomeUsernameButtonText() {
+        waitVisibilityOfElementLocated(byWelcomeUsernameButton);
+        return welcomeUsernameButton.getText();
+    }
+
+    public void clickLogoutHeaderButton() {
+        waitVisibilityOfElementLocated(byLogoutHeaderButton);
+        logoutHeaderButton.click();
     }
 
 }
