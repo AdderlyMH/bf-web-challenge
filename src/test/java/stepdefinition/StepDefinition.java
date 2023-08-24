@@ -1,6 +1,7 @@
 package stepdefinition;
 
 import components.TestBase;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -39,6 +40,16 @@ public class StepDefinition extends TestBase {
     public void appearsAPopUpWithTheMessage(String expectedAlertMessage) {
         String actualAlertMessage = mainPage.getAlertText();
         assertEquals(actualAlertMessage, expectedAlertMessage,"Alert messages don't match");
+    }
+
+    @And("clicks the OK alert button")
+    public void clicksTheOKAlertButton() {
+        mainPage.clickAlertOKButton();
+    }
+
+    @And("closes the modal SIGN UP form")
+    public void closesTheModalSIGNUPForm() {
+        mainPage.clickCloseModalButton();
     }
 
 }
