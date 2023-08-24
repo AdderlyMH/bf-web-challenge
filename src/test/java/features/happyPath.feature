@@ -3,9 +3,10 @@ Feature: Login
     Given user goes to the main page
 
     Scenario Outline: Create user
-      Given user writes data: "<username>", "<password>"
-      When user clicks the SIGN UP button
-      Then appears a pop-up with the message "Sign up successful."
+      Given user clicks the header SIGN UP button
+      And user writes data: "<username>", "<password>"
+      When user clicks the modal SIGN UP button
+      Then appears a pop-up with the message "<text_message>"
       Examples:
-        | username | password |
-        | ejemplo  | ejemplo  |
+        | username | password | text_message             |
+        | example  | example  | This user already exist. |
