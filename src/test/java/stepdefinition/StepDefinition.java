@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.MainPage;
+import pages.ProductPage;
 
 import java.io.IOException;
 
@@ -14,6 +15,7 @@ import static org.testng.Assert.assertEquals;
 public class StepDefinition extends TestBase {
 
     public MainPage mainPage;
+    public ProductPage productPage;
 
     @Given("user goes to the main page")
     public void userGoesToTheMainPage() throws IOException {
@@ -79,4 +81,13 @@ public class StepDefinition extends TestBase {
         mainPage.clickLogoutHeaderButton();
     }
 
+    @Given("user clicks on product {string}")
+    public void userClicksOnProduct(String productName) {
+        productPage = mainPage.clickToSeeProductDetails(productName);
+    }
+
+    @When("user clicks the ADD TO CART button")
+    public void userClicksTheADDTOCARTButton() {
+        productPage.clickAddToCartButton();
+    }
 }
