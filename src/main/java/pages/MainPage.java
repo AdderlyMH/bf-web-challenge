@@ -3,9 +3,12 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utility.AbstractComponents;
+
+import java.util.List;
 
 public class MainPage extends AbstractComponents {
 
@@ -14,7 +17,7 @@ public class MainPage extends AbstractComponents {
     public MainPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
     @FindBy(id = "signin2")
@@ -56,6 +59,9 @@ public class MainPage extends AbstractComponents {
     WebElement logoutHeaderButton;
     By byLogoutHeaderButton = By.id("logout2");
 
+    @FindBy(css = ".mb-4")
+    List<WebElement> productList;
+
     public void goTo() {
         driver.get("https://www.demoblaze.com/index.html");
     }
@@ -78,10 +84,6 @@ public class MainPage extends AbstractComponents {
 
     public void clickSignUpModalButton() {
         signUpModalButton.click();
-    }
-
-    public String getAlertText() {
-        return waitAndSwitchToAlert().getText();
     }
 
     public void clickAlertOKButton() {
@@ -121,6 +123,26 @@ public class MainPage extends AbstractComponents {
     public void clickLogoutHeaderButton() {
         waitVisibilityOfElementLocated(byLogoutHeaderButton);
         logoutHeaderButton.click();
+    }
+
+    public List<WebElement> getProductList() {
+        waitVisibilityOfAllElements(productList);
+        return productList;
+    }
+
+    public WebElement getProductByName(String productName) {
+        return getProductList().stream().filter(product -> product.findElement(By.cssSelector(".card-title a")).
+                getText().equals(productName)).findFirst().orElse(null);
+    }
+
+    public ProductPage clickToSeeProductDetails(String productName) {
+
+        Actions actions = new Actions(driver);
+        WebElement requiredProduct = getProductByName(productName);
+
+        actions.scrollToElement(requiredProduct).click(requiredProduct).build().perform();
+        return new ProductPage(driver);
+
     }
 
 }
