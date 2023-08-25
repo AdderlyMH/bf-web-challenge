@@ -1,0 +1,9 @@
+[{
+  "username": "example",
+  "password": "example",
+  "expectedUsernameWelcome": "Welcome example"
+}, {
+  "username": "another10",
+  "password": "another10",
+  "expectedUsernameWelcome": "Welcome another10"
+}]

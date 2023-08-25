@@ -1,6 +1,9 @@
 package components;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -10,8 +13,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.MainPage;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 
 public class TestBase {
@@ -61,6 +67,15 @@ public class TestBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         driver.close();
+    }
+
+    public List<HashMap<String,Object>> getJsonDataToMap(String filePath) throws IOException {
+
+        String jsonContent = FileUtils.readFileToString(new File(filePath), "utf-8");
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<HashMap<String,Object>> data = objectMapper.readValue(jsonContent, new TypeReference<List<HashMap<String, Object>>>() {});
+        return data;
+
     }
 
 }
