@@ -3,6 +3,7 @@ package components;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -27,7 +28,24 @@ public class Listeners extends TestBase implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        ITestListener.super.onTestFailure(result);
+
+        threadLocal.get().fail(result.getThrowable());
+
+        try {
+            driver = (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+
+        String screenshotPath = null;
+        try {
+            screenshotPath = getTestScreenshot(result.getMethod().getMethodName(), driver);
+        } catch (Exception e2) {
+            e2.printStackTrace();
+        }
+
+        threadLocal.get().addScreenCaptureFromPath(screenshotPath, result.getMethod().getMethodName());
+
     }
 
     @Override
