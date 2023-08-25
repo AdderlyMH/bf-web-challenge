@@ -26,8 +26,4 @@ public class ProductPage extends AbstractComponents {
         addToCartButton.click();
     }
 
-    public String getAlertText() {
-        return waitAndSwitchToAlert().getText();
-    }
-
 }

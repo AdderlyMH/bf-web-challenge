@@ -90,4 +90,5 @@ public class StepDefinition extends TestBase {
     public void userClicksTheADDTOCARTButton() {
         productPage.clickAddToCartButton();
     }
+
 }
