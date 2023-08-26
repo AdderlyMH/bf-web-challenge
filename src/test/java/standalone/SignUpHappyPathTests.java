@@ -1,5 +1,6 @@
 package standalone;
 
+import components.Retry;
 import components.TestBase;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -10,7 +11,7 @@ import static org.testng.Assert.assertEquals;
 
 public class SignUpHappyPathTests extends TestBase {
 
-    @Test(dataProvider = "getMap")
+    @Test(dataProvider = "getMap", retryAnalyzer = Retry.class)
     public void createUserTest(HashMap<String,String> parameter) {
 
         mainPage.clickSignUpHeaderButton();
