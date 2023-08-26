@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite parallel="methods" name="All Test Suite">
+    <listeners>
+        <listener class-name="components.Listeners"/>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="C:\Users\Adderly\IdeaProjects\bf-web-challenge">
+        <classes>
+            <class name="standalone.AddToCartHappyPathTests">
+                <methods>
+                    <include name="addingProductsToCartTest"/>
+                </methods>
+            </class>
+            <class name="standalone.SignUpHappyPathTests">
+                <methods>
+                    <include name="createUserTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
