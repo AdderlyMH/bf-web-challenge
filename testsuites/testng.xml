@@ -11,9 +11,9 @@
                     <include name="addingProductsToCartTest"/>
                 </methods>
             </class>
-            <class name="standalone.SignUpHappyPathTests">
+            <class name="standalone.SignUpUnhappyPathTests">
                 <methods>
-                    <include name="createUserTest"/>
+                    <include name="validateUserTest"/>
                 </methods>
             </class>
         </classes>
