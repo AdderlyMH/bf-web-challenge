@@ -1,4 +1,4 @@
-# Baufest web challenge
+# Web automation challenge
 
 Este es un repositorio que contiene el proyecto bf-web-challenge. Este proyecto es un desafío web y puede contener código, recursos y archivos que inclyen:
 
